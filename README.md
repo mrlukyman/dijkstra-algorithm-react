@@ -1,6 +1,8 @@
 # Dijkstra algorithm for finding the shortest path
 
 ## Steps ([wikipedia](https://en.wikipedia.org/wiki/Dijkstra%27s_algorithm#Algorithm)):
+### Algoritmus bol vytvorený pomocou popisu krokov z wikipedie:
+
 Let the node at which we are starting be called the initial node. Let the distance of node Y be the distance from the initial node to Y. Dijkstra's algorithm will assign some initial distance values and will try to improve them step by step.
 
 1. Mark all nodes unvisited. Create a set of all the unvisited nodes called the unvisited set.
