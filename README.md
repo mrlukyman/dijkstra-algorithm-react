@@ -16,6 +16,7 @@ When planning a route, it is actually not necessary to wait until the destinatio
 # Demo
 
 https://dijkstra-algorithm-react.vercel.app
+![Demo](dijkstra-algo.png)
 
 # Getting Started with Create React App
 
