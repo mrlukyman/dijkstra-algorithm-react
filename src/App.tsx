@@ -49,7 +49,12 @@ const Button = styled.div`
 `
 
 const ResetButton = styled(Button)`
-  background-color: red;
+  background-color:rgb(255, 45, 85);
+  :hover {
+    background-color: rgba(255, 45, 83, 0.842);
+    box-shadow: 0 0 1px #000 inset;
+  }
+
 `
 
 const getRandomPoint = () => ({
