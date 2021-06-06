@@ -29,7 +29,8 @@ export const findShortestPath = async (grid: Grid) => {
             y: columnIndex,
             distance: cell === CellState.INITIAL ? 0 : Infinity,
             state: cell === CellState.INITIAL ? CellState.CURRENT : cell,
-            id: getId(rowIndex, columnIndex)
+            id: getId(rowIndex, columnIndex),
+            parent: null,
           }))
       )
       return set
@@ -55,7 +56,7 @@ export const findShortestPath = async (grid: Grid) => {
         // neighbours.forEach(neighbour => {document.getElementById(neighbour.id)?.classList.add('visited')})
         // step 4 - set current as visited
         document.getElementById(currentNode.id)?.classList.add('visited')
-        // await sleep(100)
+        await sleep(25)
         unvisitedSet = unvisitedSet.filter(node => node.id !== currentNode.id)
         fullSet = fullSet.map(node => ({
           ...node,
@@ -67,23 +68,14 @@ export const findShortestPath = async (grid: Grid) => {
         if (nextNode) {
           if (nextNode.state === CellState.DESTINATION) {
             console.log(fullSet)
-            const finalSet = fullSet.reduce(({currentDistance, path}: {currentDistance: number, path: Node[]}, node) => {
-              if (node.distance === currentDistance) {
-                path.push(node)
-                return {
-                  currentDistance: currentDistance + 1,
-                  path,
-                }
-              }
-              return {
-                currentDistance,
-                path
-              }
-            }, {currentDistance: 0, path: []})
-            finalSet.path.forEach(node => document.getElementById(node.id)?.classList.add('found'))
-            console.log(finalSet)
-            // const finalIndex = finalSet.findIndex(node => node.state === CellState.DESTINATION)
-            // console.log(finalSet.filter((_node, index) => index <= finalIndex))
+            const shortestPath: Node[] = []
+            let parentNode = nextNode.parent
+            while (parentNode) {
+              shortestPath.push(parentNode)
+              parentNode = parentNode?.parent
+            }
+            shortestPath.forEach(node => document.getElementById(node.id)?.classList.add('found'))
+            console.log(shortestPath)
             break
           }
           if (nextNode.distance === Infinity) {

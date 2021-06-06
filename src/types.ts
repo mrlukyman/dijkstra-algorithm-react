@@ -17,4 +17,5 @@ export type Node = {
   distance: number,
   state: CellState,
   id: string,
+  parent: Node | null,
 }
